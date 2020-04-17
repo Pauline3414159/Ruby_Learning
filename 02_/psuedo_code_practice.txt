@@ -1,0 +1,42 @@
+
+ 1)   a method that returns the sum of two integers
+2)    a method that takes an array of strings, and returns a string that is all those strings concatenated together
+3)    a method that takes an array of integers, and returns a new array with every other element
+
+1_informal
+
+input 2 integers
+sum them
+return the result
+
+1_formal
+
+START the program
+SET the first number. SET the second number.
+ADD the first number to the second number
+RETURN the result
+END
+
+2_informal
+input an array of strings
+make a new, empty string
+append every element into that new string
+return the string
+
+2_formal
+START the method
+SET the array of strings
+SET an empty string
+READ out every element of the array. As each element is ready out, append it to the new string
+RETURN the string
+END
+
+3_informal a method that takes an array of integers, and returns a new array with every other element
+get the first array. get a second, empty array
+read out the first array. if the index is odd, then save the value into the new array
+
+3_formal
+SET the first array of integers
+SET the second empty array
+READ out the first array. IF the index is odd, then SET the value into the second arry.
+END
