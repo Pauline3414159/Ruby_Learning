@@ -1,0 +1,46 @@
+Gameplay
+
+    I recommend that you clear the screen at the start and maybe every time after a new game starts again. You can have a method like the following for it:
+
+    def clear_screen
+      system('clear') || system('cls')
+    end
+
+    The input validation for the move can be improved. I provided 'Rac' and it considered that I chose rock. Going by the prompt I don't think this was the intention.
+
+    The prompt for playing again can be improved also. I wasn't sure what to provide as input. I tried not providing anything and just pressed enter and the game proceeded to end. I think it would be better if the prompt were clearer.
+
+Rubocop
+
+I saw the warnings you mentioned. I think most, if not. all of those you can fix. Here are some additional inputs for you with regards to the indentation inconsistency warnings:
+
+# given this warning
+# rock_paper_scissors_lizard_spock.rb:28:11: C: Style/IndentationConsistency: Inconsistent indentation detected. 
+#          loop do ...
+#          ^^^^^^^
+
+# for this code
+      elsif user_choice.start_with?('s')
+        then disp_to_user('Press c for scissors and p for spock')
+          loop do
+
+For the above code, the indentation incosistency is because your loop is indented more than your then. Both should have the same level of indent. I think it is your use of then also that is causing all your other indentation warnings. Typically, when writing conditionals with ruby there is no `then. You can omit it. I think once you remove those it would be easier to spot and address the indentation warnings. The other issues are for whitespaces. I think you can address those also.
+
+# with then omitted
+      elsif user_choice.start_with?('s')
+        disp_to_user('Press c for scissors and p for spock')
+        loop do
+
+You could do the same approach with all other thens as above, remove them, and then adjust the indentations.
+
+I recommend trying to address all of the cops before moving forward. It would be good practice. I can agree with your concern about the new lines for readability and leave that to you if you want to address it. Also, the other thing I leave to you is the line length violation since I think you went over by 1 or 3 characters only. All others, I think you should address.
+Source Code
+
+I recommend extracting related code to methods. This would make the logic of your code easier to understand. As it is, there are lots of if, case, and loop interspersed and nested with each other in your main loop. This can make the code harder to debug and hard to digest for readers and future you. For instance, lines 17-45 seems to be about getting the users input and validating it. This could probably be extracted to a method called get_user_input. Moreover, within the get_user_input method you could also have a boolean helper method called valid_user_input? that returns true if input is valid and false otherwise. Another candidate for extracting are lines 51-112 which seems to be for determining who the winner of the round is.
+
+I think your disp_to_user can be better named. I can infer what disp means and I can check the code to confirm it. However, it would be better if the name itself is explicit already. It's ok to be more verbose at this point and go for readability.
+Closing Remarks
+
+Overall, I think it would be good for you to refactor your code to address the issues of rubocop and extract related and complicated looking code to methods. This would make the code more readable and the logic easier to understand. I recommend reading the other code that was submitted by other students also. Please let me know if you have further questions or clarifications. Have a good day. Cheers :thumbsup:!
+Reply
+Permalink 
