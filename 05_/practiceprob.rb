@@ -209,3 +209,168 @@ munsters = {
 #     end
 #   end
 # end
+
+# Given this data structure, 
+# return a new array of the same structure 
+# but with the sub arrays being ordered 
+# (alphabetically or numerically as appropriate) in descending order.
+
+# arr = [['b', 'c', 'a'], [2, 1, 3], ['blue', 'black', 'green']]
+# arr.map! do |innarr|
+#   innarr.sort!.reverse
+# end
+
+
+# p arr
+
+# Given the following data structure and 
+# without modifying the original array, 
+# use the map method to return a new array identical 
+# in structure to the original but where the value of
+# each integer is incremented by 1.
+
+# arr = [{a: 1}, {b: 2, c: 3}, {d: 4, e: 5, f: 6}]
+# arr2 = arr.each do |hsh|
+#   hsh.each do |k, v|
+#     hsh[k] = v + 1
+#   end
+# end
+# p arr
+# p arr2
+
+# Given the following data structure 
+# use a combination of methods, 
+# including either the select or reject method, 
+# to return a new array identical in structure 
+# to the original but containing only the integers 
+# that are multiples of 3.
+
+# arr = [[2], [3, 5, 7], [9], [11, 13, 15]]
+
+# arr2 = arr.map do |innarr|
+#   innarr.select {|num| num % 3 == 0}
+# end
+
+# p arr2
+# # p [3,4,5,6].select {|num| num % 3 == 0}
+
+# Given the following data structure, and without using
+# the Array#to_h method, write 
+# some code that will return a hash where the key is the 
+# first item in each sub array and the value is the second item.
+
+# hsh = {:a=>1, "b"=>"two", "sea"=>{:c=>3}, {:a=>1, :b=>2, :c=>3, :d=>4}=>"D"}
+
+# arr = [[:a, 1], ['b', 'two'], ['sea', {c: 3}], [{a: 1, b: 2, c: 3, d: 4}, 'D']]
+# newhsh = {}
+# arr.map do |innarr|
+#   key = innarr[0]
+#   value = innarr[1]
+#   newhsh[key] = value
+# end
+# p newhsh == hsh
+
+# arr2 = ['a',4]
+# hsh2 = {}
+# hsh2[arr2[0]]=arr2[1]
+# p hsh2
+
+# Given the following data structure,
+# return a new array containing the same 
+# sub-arrays as the original but ordered 
+# logically by only taking into consideration 
+# the odd numbers they contain.
+# The sorted array should look like this:
+
+# arrend = [[1, 8, 3], [1, 6, 7], [1, 4, 9]]
+
+# arr = [[1, 6, 7], [1, 4, 9], [1, 8, 3]]
+
+# arr2 = arr.sort_by {|innar| innar.select {|e| e.odd?}}
+
+# p arr
+
+# p arr2 == arrend
+
+# p arr.map do |innarr|
+#   innarr.sort {|a , b|
+#     b <=> a}
+#   end
+
+# Given this data structure write some code
+# to return an array containing the colors of 
+# the fruits and the sizes of the vegetables. 
+# The sizes should be uppercase and the colors 
+# should be capitalized.
+
+# The return value should look like this:
+
+# ans = [["Red", "Green"], "MEDIUM", ["Red", "Green"], ["Orange"], "LARGE"]
+
+# hsh = {
+#   'grape' => {type: 'fruit', colors: ['red', 'green'], size: 'small'},
+#   'carrot' => {type: 'vegetable', colors: ['orange'], size: 'medium'},
+#   'apple' => {type: 'fruit', colors: ['red', 'green'], size: 'medium'},
+#   'apricot' => {type: 'fruit', colors: ['orange'], size: 'medium'},
+#   'marrow' => {type: 'vegetable', colors: ['green'], size: 'large'},
+# }
+# newarr = []
+# hsh.each do |produce, details|
+#   if details[:type] == 'fruit'
+#     details[:colors].map! do |ele|
+#       ele.capitalize
+#     end
+#     newarr << details[:colors]
+#   elsif details[:type] == 'vegetable'
+#     newarr << details[:size].upcase
+#   end
+# end
+# p newarr == ans
+
+# Given this data structure write some
+# code to return an array which contains 
+# only the hashes where all the integers are even.
+
+# p arr[0] #  {:a=>[1, 2, 3]}
+# p arr[1]  #  {:b=>[2, 4, 6], :c=>[3, 6], :d=>[4]}
+# p arr[2]  #  {:e=>[8], :f=>[6, 10]}
+
+# arr = [{a: [1, 2, 3]}, {b: [2, 4, 6], c: [3, 6], d: [4]}, {e: [8], f: [6, 10]}]
+
+# arr.map! do |hsh1|
+#   hsh1.keep_if {|key, valuearr| valuearr.all?{|e| e.even?}}
+# end
+
+# p arr
+
+# A UUID is a type of identifier often used as a way to uniquely identify items
+# ...which may not all be created by the same system. 
+# That is, without any form of synchronization, two or 
+# more separate computer systems can create new items and label 
+# them with a UUID with no significant chance of stepping on each other's toes.
+
+# It accomplishes this feat through massive randomization. 
+# The number of possible UUID values is approximately 3.4 X 10E38.
+
+# Each UUID consists of 32 hexadecimal characters, 
+# and is typically broken into 5 sections like this 8-4-4-4-12 a
+# nd represented as a string.
+
+# It looks like this: "f65c57f6-a6aa-17a8-faa1-a67f2dc9fa91"
+
+# Write a method that returns one UUID when called with no parameters.
+# def make_UUID
+#   arr = []
+#   32.times do
+#     a = [0,1,2,3,4,5,6,7,8,9,'a','b','c','d','e','f'].sample
+#     arr << a
+#   end
+#   arr.insert(8, '-')
+#   arr.insert(13, '-')
+#   arr.insert(18, '-')
+#   arr.insert(23, '-')
+#   arr.join
+# end
+
+# test = make_UUID
+# p test
