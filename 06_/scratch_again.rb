@@ -1,25 +1,35 @@
-#make an array
-practice = Array.new(5) {|i| i += 1}
-#turn it into hash with array as value with two elements in array
-practice_hash = {}
-practice.each do |num|
-  if num.even?
-    practice_hash[num] = ['even', 3]
-  elsif num.odd?
-    practice_hash[num] = ['odd',3]
+SUIT = ['Hearts', 'Diamonds', 'Spades', 'Clubs']
+
+def promt(msg)
+  puts("=>#{msg}")
+end
+
+# make a deck of cards
+def ininitalize_suite_of_cards(suite)
+  cards = Array.new(13) { |i| i + 2 }
+  cards[-1] = 'Ace'
+  cards[-2] = 'King'
+  cards[-3] = 'Queen'
+  cards[-4] = 'Jack'
+  cards.map! do |card|
+    card.to_s + " of #{suite}"
   end
 end
 
+DECK = SUIT.map { |suit| ininitalize_suite_of_cards(suit) }. flatten
 
-#select all keys that have tag 'even'
-
-evens_hash = practice_hash.select {|num, arr| arr[0] == 'even'}
-
-#update 3 to 6
-
-evens_hash.each_value do |arr|
-  arr[1] = 6
+#add card value to values in the hash
+playdeck_hash = {}
+DECK.each do |card|
+  if card =~ /[\d]/
+    playdeck_hash[card] = [card[0..1].to_i]
+  elsif card.match('Ace')
+    playdeck_hash[card] = [1]
+  end
 end
 
-p evens_hash
-p practice_hash
+#add card status to values in the hash
+playdeck_hash.each_value {|num| num << 'in deck'}
+
+
+p playdeck_hash.values.flatten.select {|num| num.is_a?Integer}
