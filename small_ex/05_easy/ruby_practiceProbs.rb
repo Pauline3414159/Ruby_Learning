@@ -278,18 +278,48 @@
 # crunch('') == ''
 
 
-def print_in_box(string)
-  a = string
-  sizeone = a.size
-  a.prepend('| ')
-  a = a + ' |'
-  inbetween = '|' + (" " * (sizeone + 2)) + '|'
-  top = '+' + ('-' * (sizeone + 2)) + '+'
-  puts top
-  puts inbetween
-  puts a
-  puts inbetween
-  puts top
+# def print_in_box(string)
+#   a = string
+#   sizeone = a.size
+#   a.prepend('| ')
+#   a = a + ' |'
+#   inbetween = '|' + (" " * (sizeone + 2)) + '|'
+#   top = '+' + ('-' * (sizeone + 2)) + '+'
+#   puts top
+#   puts inbetween
+#   puts a
+#   puts inbetween
+#   puts top
+# end
+
+# p print_in_box('To bodly go')
+
+# def crunch(striing)
+#   empty = []
+#   arr = striing.chars
+#   counter = 0
+#   until counter == arr.size
+#     unless arr[counter] == arr[counter + 1]
+#       empty << arr[counter]
+#     end
+#     counter += 1
+#   end
+#   empty.join
+# end
+
+# p crunch('tesssst')
+# p crunch('ddaaiillyy ddoouubbllee') == 'daily double'
+# p crunch('4444abcabccba') == '4abcabcba'
+# p crunch('ggggggggggggggg') == 'g'
+# p crunch('a') == 'a'
+# p crunch('') == ''
+
+def spin_me(str)
+  str.split.each do |word|
+    word.reverse!
+  end.join(" ")
 end
 
-p print_in_box('To bodly go')
+h = 'test'
+p h.object_id
+p spin_me(h).object_id

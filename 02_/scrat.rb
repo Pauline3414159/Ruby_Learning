@@ -1,14 +1,28 @@
-def disp_to_user(x)
-  puts "=>#{x}"
-end
+# values_of_cards = {"2 of Hearts"=>[2], "3 of Hearts"=>[3], "4 of Hearts"=>[4], "5 of Hearts"=>[5], "6 of Hearts"=>[6], "7 of Hearts"=>[7], "8 of Hearts"=>[8], "9 of Hearts"=>[9], "10 of Hearts"=>[10], "Jack of Hearts"=>[10], "Queen of Hearts"=>[10], "King of Hearts"=>[10], "Ace of Hearts"=>[1], "2 of Diamonds"=>[2], "3 of Diamonds"=>[3], "4 of Diamonds"=>[4], "5 of Diamonds"=>[5], "6 of Diamonds"=>[6], "7 of Diamonds"=>[7], "8 of Diamonds"=>[8], "9 of Diamonds"=>[9], "10 of Diamonds"=>[10], "Jack of Diamonds"=>[10], "Queen of Diamonds"=>[10], "King of Diamonds"=>[10], "Ace of Diamonds"=>[1], "2 of Spades"=>[2], "3 of Spades"=>[3], "4 of Spades"=>[4], "5 of Spades"=>[5], "6 of Spades"=>[6], "7 of Spades"=>[7], "8 of Spades"=>[8], "9 of Spades"=>[9], "10 of Spades"=>[10], "Jack of Spades"=>[10], "Queen of Spades"=>[10], "King of Spades"=>[10], "Ace of Spades"=>[1], "2 of Clubs"=>[2], "3 of Clubs"=>[3], "4 of Clubs"=>[4], "5 of Clubs"=>[5], "6 of Clubs"=>[6], "7 of Clubs"=>[7], "8 of Clubs"=>[8], "9 of Clubs"=>[9], "10 of Clubs"=>[10], "Jack of Clubs"=>[10], "Queen of Clubs"=>[10], "King of Clubs"=>[10], "Ace of Clubs"=>[1]}
 
-def grand_win_check(uwins,cwins)
-  if uwins == 5
-    disp_to_user('You have won five rounds! You are the grand winner!')
-  elsif cwins == 5
-    disp_to_user('Computer has won five roudns! Computer is the grand winner!')
-  end
-  return
-end
+# def value_of_hand (hnd, valuehsh)
+#   val_arr = []
+#   hnd.each do |card|
+#     val_arr << valuehsh[card]
+#   end
+#   val_arr.flatten!
+#   val_arr.sum
+# end
 
-grand_win_check(4,5)
+# def value_with_ace(hnd, valuehsh)
+#   sorted_arr = hnd.partition {|card| card.match?(/Ace/)}
+#   non_ace_card_value = value_of_hand(sorted_arr[1],valuehsh)
+#   num_of_ace = sorted_arr[0].size
+#   total_ace_value = 1
+#   if non_ace_card_value <= (10 - (num_of_ace - 1))
+#     total_ace_value = 11 + (num_of_ace - 1)
+#   else
+#     total_ace_value = num_of_ace
+#   end
+#   #binding.pry
+#   total_ace_value + non_ace_card_value
+# end
+
+# hands = ["Ace of Clubs", "2 of Spades"]
+
+# p value_with_ace(hands, values_of_cards)

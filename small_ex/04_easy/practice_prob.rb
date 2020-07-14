@@ -377,32 +377,93 @@
 
 # Examples
 
-ITGHSH = { 0 => '0', 1 => '1', 2 => '2', 3 => '3', 4 => '4', 5 => '5', 6 => '6', 7 => '7', 8 => '8', 9 => '9'}
+=begin
+Write a method that takes a year as input and returns the century. 
+The return value should be a string that begins with the century number,
+and ends with st, nd, rd, or th as appropriate for that number.
 
-def integer_to_string(int)
-  arr = int.digits.map do |digit|
-    ITGHSH[digit]
-  end
-  arr.reverse.join
-end
+New centuries begin in years that end with 01. 
+So, the years 1901-2000 comprise the 20th century.
+1. return a centery
+new centuries start in 01, so 00 is the prev century
+001 - 100 is the first century
+2450 is in the 25th century
+if the last two digit is 01 or more, add enough to be the mext
+multiple of 100, but if it's 00, it's the first divided by 100 century minus 1
+2. return a st, nd, rd, or th
+=end
 
-# p integer_to_string(4321)
+# def which_century(year)
+#   arr = year.divmod(100)
+#   if arr[1] == 0
+#     arr[0]
+#   else 
+#     arr[0] + 1
+#   end
+# end
 
-# p integer_to_string(4321) == '4321'
-# p integer_to_string(0) == '0'
-# p integer_to_string(5000) == '5000'
 
-def signed_integer_to_string(ooo)
-  if ooo > 0
-    sign = '+'
-  elsif ooo < 0
-    sign = '-'
-  else
-    sign = ' '
-  end
-  sign + integer_to_string(ooo)
-end
+# def ordinal(century)
+#   if century > 10
+#     case century.to_s[-2 .. -1]
+#     when '11' then 'th'
+#     when '12' then 'th'
+#     when '13' then 'th'
+#     when '01' then 'st'
+#     when '21' then 'st'
+#     when '31' then 'st'
+#     when '41' then 'st'
+#     when '51' then 'st'
+#     when '61' then 'st'
+#     when '71' then 'st'
+#     when '81' then 'st'
+#     when '91' then 'st'
+#     when '02' then 'nd'
+#     when '22' then 'nd'
+#     when '32' then 'nd'
+#     when '42' then 'nd'
+#     when '52' then 'nd'
+#     when '62' then 'nd'
+#     when '72' then 'nd'
+#     when '82' then 'nd'
+#     when '92' then 'nd'
+#     when '03' then 'rd'
+#     when '23' then 'rd'
+#     when '33' then 'rd'
+#     when '43' then 'rd'
+#     when '53' then 'rd'
+#     when '63' then 'rd'
+#     when '73' then 'rd'
+#     when '83' then 'rd'
+#     when '93' then 'rd'
+#     else 'th'
+#     end
+#   elsif century < 10
+#     case century.to_s[-1]
+#     when '1' then 'st'
+#     when '2' then 'nd'
+#     when '3' then 'rd'
+#     else 'th'
+#     end
+#   end
+# end
 
-p signed_integer_to_string(4321) == '+4321'
-p signed_integer_to_string(-123) == '-123'
-p signed_integer_to_string(0) == '0'
+
+# def century(year)
+#   time = which_century(year)
+#   ending = ordinal(time)
+#   time.to_s + ending
+# end
+
+# p century(2000) == '20th'
+# p century(2001) == '21st'
+# p century(1965) == '20th'
+# p century(256) == '3rd'
+# p century(5) == '1st'
+# p century(10103) == '102nd'
+# p century(1052) == '11th'
+# p century(1127) == '12th'
+# p century(11201) == '113th'
+
+x=10
+puts 'ues' if x > 0
