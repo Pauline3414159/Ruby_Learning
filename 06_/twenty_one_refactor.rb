@@ -72,12 +72,11 @@ def value_of_hand_with_ace(hands_hsh)
   arr = hands_hsh.values.flatten.select { |num| num.is_a?Integer }
   number_of_ace = arr.count(1)
   non_ace_value = value_of_hand(hands_hsh) - number_of_ace
-  total_ace_value = 1
-  if non_ace_value <= (10 - (number_of_ace - 1))
-    total_ace_value = 11 + (number_of_ace - 1)
-  else
-    total_ace_value = number_of_ace
-  end
+  total_ace_value = if non_ace_value <= (10 - (number_of_ace - 1))
+                      11 + (number_of_ace - 1)
+                    else
+                      number_of_ace
+                    end
   total_ace_value + non_ace_value
 end
 
@@ -151,13 +150,15 @@ if rules == 'r'
   Both you and the dealer get 2 cards. You can only see one of the ' \
   "dealer's cards.
   Good luck!")
+  promt('Enter any key to continue')
+  # need a pause before clearing screen
+  gets.chomp
 end
-promt('Enter any key to continue')
-# need a pause before clearing screen
-gets.chomp
+
 loop do
   loop do
     clear_screen
+    # reset all locations of cards to 'in deck'
     stack_of_cards.each_key { |card| stack_of_cards[card][1] = 'in deck' }
     # deal cards
     draw_cards_player(stack_of_cards, 2)
@@ -168,6 +169,7 @@ loop do
     display_player_card_value(
       stack_of_cards.select { |_, arr| arr[1] == 'player hand' }
     )
+    # player turn
     loop do
       promt("Enter 'h' to hit or 's' to stay")
       ans = hit_or_stay('userstring')
@@ -183,6 +185,7 @@ loop do
         )
       )
     end
+    # check to see if player has busted/lost
     if value_over_21?(
       final_value_of_hand(
         stack_of_cards.select { |_, arr| arr[1] == 'player hand' }
@@ -206,6 +209,7 @@ loop do
         )
       )
     end
+    # check to see who won
     if value_over_21?(
       final_value_of_hand(
         stack_of_cards.select { |_, arr| arr[1] == 'dealer hand' }
@@ -222,41 +226,43 @@ loop do
           )
       wins(scores, 'dealer')
       promt(
-        "Dealer had a #{stack_of_cards.select { |_, arr| 
-        arr[1] == 'dealer hand' }.keys[0 .. -2].join (", ")} " + 
-        "and a #{stack_of_cards.select { |_, arr| 
-        arr[1] == 'dealer hand' }.keys[-1]}}"
+        "Dealer had a "\
+        "#{stack_of_cards.select { |_, arr| arr[1] == 'dealer hand' }
+        .keys[0..-2].join(',')} " \
+        "and a "\
+        "#{stack_of_cards.select { |_, arr| arr[1] == 'dealer hand' }
+        .keys[-1]}}"
       )
       break
     elsif final_value_of_hand(
-        stack_of_cards.select { |_, arr| arr[1] == 'dealer hand' }
-    ) < 
-      final_value_of_hand(
-        stack_of_cards.select  { |_, arr| arr[1] == 'player hand' }
-      )
+      stack_of_cards.select { |_, arr| arr[1] == 'dealer hand' }
+    ) <
+          final_value_of_hand(
+            stack_of_cards.select { |_, arr| arr[1] == 'player hand' }
+          )
       wins(scores, 'player')
       break
     elsif final_value_of_hand(
       stack_of_cards.select { |_, arr| arr[1] == 'dealer hand' }
     ) ==
-      final_value_of_hand(
-        stack_of_cards.select  { |_, arr| arr[1] == 'player hand' }
-      )
+          final_value_of_hand(
+            stack_of_cards.select { |_, arr| arr[1] == 'player hand' }
+          )
       promt("It's a tie!")
       break
     end
   end
-promt("Player score is #{scores['player_score']}" + 
-" and Dealer score is #{scores['dealer_score']}")
-if scores['player_score'] == 5
-  promt('Player won 5 rounds! Player is the grand winner!')
-  break
-elsif scores['dealer_score'] == 5
-  promt('Dealer has won 5 rounds! Dealer is the grand winner!')
-  break
-end
-promt("Would you like to play again? ('y' to continue)")
-ans = gets.chomp.downcase
-break unless ans == 'y'
+  promt("Player score is #{scores['player_score']}" \
+  " and Dealer score is #{scores['dealer_score']}")
+  if scores['player_score'] == 5
+    promt('Player won 5 rounds! Player is the grand winner!')
+    break
+  elsif scores['dealer_score'] == 5
+    promt('Dealer has won 5 rounds! Dealer is the grand winner!')
+    break
+  end
+  promt("Would you like to play again? ('y' to continue)")
+  ans = gets.chomp.downcase
+  break unless ans == 'y'
 end
 promt('Thanks for playing!')
