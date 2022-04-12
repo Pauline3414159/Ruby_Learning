@@ -9,3 +9,6 @@ Contains small programs for working with arrays and hashes.
 
 # 06
 Contains a refactor of a simplified version of blackjack
+
+# Small Examples
+Contains 12 more sets of learning problems
