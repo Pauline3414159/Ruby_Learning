@@ -6,3 +6,6 @@ This folder includes programs such as rocks paper scissors, a simplified version
 
 # 05
 Contains small programs for working with arrays and hashes. 
+
+# 06
+Contains a refactor of a simplified version of blackjack
