@@ -2,4 +2,7 @@
 Small toy programs for learning Ruby
 
 # 02
-This folder includes programs such as rocks paper scissors, a simplified version of blackjack, and a calculator
+This folder includes programs such as rocks paper scissors, a simplified version of blackjack, and a calculator.
+
+# 05
+Contains small programs for working with arrays and hashes. 
